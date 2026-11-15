@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a0b">
+  <meta name="description" content="HafiRedőny Árnyékolástechnika – redőnyök, árnyékolók és szúnyoghálók.">
+  <title>HafiRedőny – Modern árnyékolástechnika</title>
+
+  <style>
+    /* ALAPBEÁLLÍTÁSOK */
+    :root {
+      --bg: #080a0b;
+      --text: #f5f5f2;
+      --muted: #c0c3c0;
+      --neon: #e4ff00;
+      --width: 1240px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    /* FEJLÉC ÉS NAVIGÁCIÓ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(7, 9, 10, 0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .brand {
+      display: block;
+      flex: 0 0 235px;
+    }
+
+    .brand img,
+    .hero-logo,
+    .contact-logo {
+      display: block;
+      width: 100%;
+      height: auto;
+      mix-blend-mode: screen;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 3vw, 42px);
+      margin-left: auto;
+    }
+
+    .nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      color: #f0f0ed;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    /* NEON CSÍK A MENÜPONTOK ALATT */
+    .nav-link::after {
+      position: absolute;
+      right: 0;
+      bottom: 2px;
+      left: 0;
+      height: 2px;
+      content: "";
+      background: var(--neon);
+      box-shadow: 0 0 10px var(--neon), 0 0 22px rgba(228, 255, 0, 0.55);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--neon);
+    }
+
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    /* ÁRAJÁNLATKÉRŐ GOMB */
+    .quote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex: 0 0 auto;
+      min-height: 47px;
+      padding: 0 20px;
+      border: 1px solid var(--neon);
+      border-radius: 999px;
+      color: var(--text);
+      background: transparent;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .quote-button:hover,
+    .quote-button:focus-visible {
+      color: #080a00;
+      background: var(--neon);
+      box-shadow: 0 0 22px rgba(228, 255, 0, 0.35);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(228, 255, 0, 0.6);
+      border-radius: 12px;
+      color: var(--neon);
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* FŐOLDALI NYITÓKÉP – kepek/fokep.png */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(3, 5, 7, 0.96) 0%, rgba(3, 5, 7, 0.82) 35%, rgba(3, 5, 7, 0.22) 100%),
+        linear-gradient(0deg, rgba(3, 5, 7, 0.42), transparent 45%),
+        url("kepek/fokep.png") center 54% / cover;
+    }
+
+    /* FINOM NEON DÍSZCSÍKOK A FŐKÉPEN */
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      width: 230px;
+      height: 1px;
+      content: "";
+      background: var(--neon);
+      box-shadow: 0 0 10px var(--neon), 0 0 25px rgba(228, 255, 0, 0.7);
+      opacity: 0.85;
+    }
+
+    .hero::before {
+      top: 38px;
+      left: -48px;
+      transform: rotate(-46deg);
+    }
+
+    .hero::after {
+      right: -58px;
+      bottom: 48px;
+      transform: rotate(-46deg);
+    }
+
+    .hero-content {
+      width: min(var(--width), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 16px;
+      color: #e8e9e6;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 50px;
+      height: 2px;
+      content: "";
+      background: var(--neon);
+      box-shadow: 0 0 10px var(--neon);
+    }
+
+    .hero-logo {
+      width: min(650px, 80vw);
+      margin-left: -8px;
+    }
+
+    .hero h1 {
+      margin-top: 6px;
+      font-size: clamp(28px, 4vw, 47px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .hero-copy {
+      max-width: 540px;
+      margin-top: 20px;
+      color: #e0e1df;
+      font-size: clamp(16px, 1.7vw, 19px);
+      line-height: 1.65;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      min-height: 55px;
+      margin-top: 27px;
+      padding: 0 27px;
+      border: 1px solid var(--neon);
+      border-radius: 999px;
+      color: #080a00;
+      background: var(--neon);
+      box-shadow: 0 0 24px rgba(228, 255, 0, 0.24);
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(228, 255, 0, 0.45);
+    }
+
+    /* KIEMELT ELŐNYÖK */
+    .benefits {
+      border-top: 1px solid rgba(228, 255, 0, 0.48);
+      border-bottom: 1px solid rgba(228, 255, 0, 0.48);
+      background:
+        radial-gradient(ellipse at 50% 0, rgba(228, 255, 0, 0.06), transparent 55%),
+        #080a0b;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 25px 0;
+    }
+
+    .benefit {
+      display: flex;
+      min-height: 110px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 5px 14px;
+      text-align: center;
+    }
+
+    .benefit + .benefit {
+      border-left: 1px solid rgba(228, 255, 0, 0.6);
+    }
+
+    .benefit-icon-image {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(228, 255, 0, 0.45));
+    }
+
+    .benefit span:last-child {
+      max-width: 180px;
+      color: #e3e4e1;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    /* ÁLTALÁNOS TARTALMI SZAKASZOK */
+    .content-section {
+      padding: 82px 0;
+    }
+
+    .section-kicker {
+      margin-bottom: 8px;
+      color: var(--neon);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin-bottom: 14px;
+      font-size: clamp(30px, 4vw, 42px);
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+    }
+
+    .section-intro {
+      max-width: 700px;
+      color: var(--muted);
+    }
+
+    .dark-section {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0d1011;
+    }
+
+    /* TERMÉKEK: HÁROM KATEGÓRIADOBOZ */
+    .product-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .product-group {
+      align-self: start;
+      padding: 20px;
+      border: 1px solid rgba(228, 255, 0, 0.28);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #151919, #0c0e0f);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-group:hover,
+    .product-group:focus-within,
+    .product-group.is-open {
+      border-color: rgba(228, 255, 0, 0.7);
+      box-shadow: 0 0 22px rgba(228, 255, 0, 0.08);
+    }
+
+    .group-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 2px 0 12px;
+      border: 0;
+      color: var(--text);
+      background: transparent;
+      font-size: 19px;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .group-title span:last-child {
+      color: var(--neon);
+      transition: transform 0.2s ease;
+    }
+
+    .product-group:hover .group-title span:last-child,
+    .product-group:focus-within .group-title span:last-child,
+    .product-group.is-open .group-title span:last-child {
+      transform: rotate(180deg);
+    }
+
+    /* TERMÉKLISTA – KURZORRA LENYÍLIK */
+    .group-products {
+      display: grid;
+      gap: 4px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.28s ease, opacity 0.2s ease;
+    }
+
+    .product-group:hover .group-products,
+    .product-group:focus-within .group-products,
+    .product-group.is-open .group-products {
+      max-height: 380px;
+      opacity: 1;
+    }
+
+    /* KATTINTÁS UTÁN BEZÁRVA MARAD, AMÍG A KURZOR A DOBOZON VAN */
+    .product-group.is-closed .group-products,
+    .product-group.is-closed:hover .group-products,
+    .product-group.is-closed:focus-within .group-products {
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .group-products button {
+      width: 100%;
+      padding: 9px 10px;
+      border: 0;
+      border-radius: 8px;
+      color: #e9eae7;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.18s ease, background 0.18s ease;
+    }
+
+    .group-products button:hover,
+    .group-products button:focus-visible {
+      color: var(--neon);
+      background: rgba(228, 255, 0, 0.08);
+    }
+
+    /* KIVÁLASZTOTT TERMÉK KÉPE ÉS LEÍRÁSA */
+    .product-detail {
+      position: relative;
+      isolation: isolate;
+      min-height: 390px;
+      display: grid;
+      align-items: center;
+      margin-top: 25px;
+      padding: clamp(26px, 5vw, 54px);
+      overflow: hidden;
+      border: 1px solid rgba(228, 255, 0, 0.45);
+      border-radius: 20px;
+      background-color: #101313;
+      background-image: var(--product-image, none);
+      background-position: center;
+      background-size: cover;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+      animation: detail-in 0.35s ease both;
+    }
+
+    /* SÖTÉTÍTŐ RÉTEG A TERMÉKLEÍRÁS HÁTTERÉN */
+    .product-detail::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background:
+        linear-gradient(90deg, rgba(4, 6, 7, 0.94), rgba(4, 6, 7, 0.76)),
+        linear-gradient(0deg, rgba(4, 6, 7, 0.35), rgba(4, 6, 7, 0.35));
+    }
+
+    .product-detail[hidden] {
+      display: none;
+    }
+
+    .product-detail-copy {
+      max-width: 780px;
+    }
+
+    .product-detail h3 {
+      margin-bottom: 18px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+    }
+
+    .product-detail ul {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .product-detail li {
+      position: relative;
+      padding-left: 25px;
+      color: #f3f4f0;
+      font-size: 16px;
+      line-height: 1.55;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+    }
+
+    .product-detail li::before {
+      position: absolute;
+      top: 0.58em;
+      left: 2px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      content: "";
+      background: var(--neon);
+      box-shadow: 0 0 12px rgba(228, 255, 0, 0.8);
+    }
+
+    .product-quote-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 22px;
+      padding: 10px 17px;
+      border: 1px solid var(--neon);
+      border-radius: 999px;
+      color: #080a00;
+      background: var(--neon);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 0 18px rgba(228, 255, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-quote-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(228, 255, 0, 0.4);
+    }
+
+    @keyframes detail-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SZOLGÁLTATÁSOK – A SZERELŐFOTÓ SÖTÉTÍTETT HÁTTÉRKÉPKÉNT */
+    .service-section {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: #0d1011;
+    }
+
+    .service-section::before {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      content: "";
+      background-color: #0d1011;
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(5, 7, 8, 0.18) 0%,
+          rgba(5, 7, 8, 0.32) 24%,
+          rgba(5, 7, 8, 0.82) 43%,
+          #0d1011 61%,
+          #0d1011 100%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(5, 7, 8, 0.48),
+          rgba(5, 7, 8, 0.38)
+        ),
+        url("kepek/szerelo.png");
+      background-repeat: no-repeat;
+      background-size: cover, cover, auto 100%;
+      background-position: center, center, left center;
+    }
+
+    .service-section > .container {
+      position: relative;
+      z-index: 1;
+      padding-left: clamp(360px, 40vw, 500px);
+    }
+
+    .service-section .section-intro {
+      color: #e0e2df;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    /* SZOLGÁLTATÁSI KÁRTYÁK */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .info-card {
+      padding: 21px;
+      border: 1px solid rgba(228, 255, 0, 0.28);
+      border-radius: 14px;
+      background: rgba(12, 15, 15, 0.92);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .info-card:hover {
+      border-color: rgba(228, 255, 0, 0.65);
+      transform: translateY(-3px);
+    }
+
+    .info-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    .info-card p {
+      color: #d0d2ce;
+      font-size: 14px;
+    }
+
+    /* RÓLUNK ÉS KÖZÖSSÉGI MÉDIA */
+    .social-follow {
+      margin-top: 30px;
+    }
+
+    .social-follow p {
+      margin-bottom: 14px;
+      color: #f0f0ed;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 8px 16px;
+      border: 1px solid rgba(228, 255, 0, 0.48);
+      border-radius: 999px;
+      color: #f5f5f2;
+      background: #111516;
+      font-size: 14px;
+      font-weight: 700;
+      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-link:hover,
+    .social-link:focus-visible {
+      color: #080a00;
+      background: var(--neon);
+      box-shadow: 0 0 20px rgba(228, 255, 0, 0.25);
+    }
+
+    .social-link svg {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      fill: currentColor;
+    }
+
+    /* KAPCSOLAT ÉS AJÁNLATKÉRŐ ŰRLAP */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      align-items: stretch;
+      gap: 48px;
+      margin-top: 28px;
+    }
+
+    .quote-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 6px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #454a43;
+      border-radius: 10px;
+      outline: none;
+      color: var(--text);
+      background: #111516;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--neon);
+      box-shadow: 0 0 0 3px rgba(228, 255, 0, 0.1);
+    }
+
+    .form-field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      justify-self: start;
+      margin-top: 2px;
+    }
+
+    .contact-card {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      padding: 38px 24px;
+      border: 1px solid rgba(228, 255, 0, 0.28);
+      border-radius: 18px;
+      background: linear-gradient(145deg, #141819, #0c0e0f);
+      text-align: center;
+    }
+
+    .contact-logo {
+      width: min(100%, 300px);
+    }
+
+    .contact-divider {
+      width: 64px;
+      height: 2px;
+      background: var(--neon);
+      box-shadow: 0 0 12px var(--neon);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-links a {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      color: var(--neon);
+    }
+
+    .contact-links .email-link {
+      color: var(--neon);
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* LÁBLÉC */
+    .site-footer {
+      padding: 22px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      color: #aeb1af;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    /* TABLETES */
+    @media (max-width: 900px) {
+      .header-inner {
+        min-height: 74px;
+        gap: 16px;
+      }
+
+      .brand {
+        flex-basis: 200px;
+      }
+
+      .menu-toggle {
+        display: block;
+        margin-left: auto;
+      }
+
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 24px 16px;
+        border-bottom: 1px solid rgba(228, 255, 0, 0.4);
+        background: rgba(7, 9, 10, 0.99);
+      }
+
+      .main-nav.is-open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-link {
+        min-height: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .header-quote {
+        display: none;
+      }
+
+      .product-groups {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      /* KISEBB KÉPERNYŐN KATTINTÁSRA NYÍLIK A TERMÉKLISTA */
+      .group-products {
+        display: none;
+        max-height: none;
+        opacity: 1;
+      }
+
+      .product-group.is-open .group-products {
+        display: grid;
+      }
+
+      .product-group:hover .group-products,
+      .product-group:focus-within .group-products {
+        max-height: none;
+      }
+
+      .product-group.is-closed .group-products,
+      .product-group.is-closed:hover .group-products,
+      .product-group.is-closed:focus-within .group-products {
+        display: none;
+        max-height: 0;
+        opacity: 0;
+      }
+
+      /* TABLETEN A SZERELŐFOTÓ SÖTÉTÍTETT HÁTTÉR MARAD */
+      .service-section::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 7, 8, 0.58), rgba(5, 7, 8, 0.88)),
+          linear-gradient(0deg, rgba(5, 7, 8, 0.72), rgba(5, 7, 8, 0.55)),
+          url("kepek/szerelo.png");
+        background-size: cover, cover, auto 100%;
+        background-position: center, center, left center;
+      }
+
+      .service-section > .container {
+        padding-left: 0;
+      }
+
+      .service-section .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .benefit:nth-child(4) {
+        border-left: 0;
+      }
+
+      .benefit:nth-child(n + 4) {
+        border-top: 1px solid rgba(228, 255, 0, 0.35);
+      }
+    }
+
+    /* MOBILNÉZET */
+    @media (max-width: 620px) {
+      .container,
+      .hero-content {
+        width: calc(100% - 36px);
+      }
+
+      .brand {
+        flex-basis: 170px;
+      }
+
+      .hero {
+        min-height: 555px;
+        align-items: flex-end;
+        background:
+          linear-gradient(90deg, rgba(3, 5, 7, 0.92), rgba(3, 5, 7, 0.5)),
+          linear-gradient(0deg, rgba(3, 5, 7, 0.8), transparent 80%),
+          url("kepek/fokep.png") 58% center / cover;
+      }
+
+      .hero-content {
+        padding: 72px 0 43px;
+      }
+
+      .eyebrow {
+        gap: 10px;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+      }
+
+      .eyebrow::before {
+        width: 32px;
+      }
+
+      .hero-logo {
+        width: 96%;
+        margin-left: -5px;
+      }
+
+      .hero h1 {
+        font-size: clamp(25px, 7vw, 34px);
+      }
+
+      .hero-copy {
+        margin-top: 14px;
+        font-size: 15px;
+      }
+
+      .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 10px 0;
+      }
+
+      .benefit {
+        min-height: 100px;
+        padding: 8px;
+      }
+
+      .benefit + .benefit {
+        border-left: 0;
+      }
+
+      .benefit:nth-child(even) {
+        border-left: 1px solid rgba(228, 255, 0, 0.5);
+      }
+
+      .benefit:nth-child(n + 3) {
+        border-top: 1px solid rgba(228, 255, 0, 0.32);
+      }
+
+      .benefit span:last-child {
+        font-size: 12px;
+      }
+
+      .content-section {
+        padding: 62px 0;
+      }
+
+      .product-group {
+        padding: 17px;
+      }
+
+      .product-detail {
+        min-height: 0;
+        padding: 27px 21px;
+        background-position: center;
+      }
+
+      .product-detail::before {
+        background: rgba(4, 6, 7, 0.86);
+      }
+
+      .product-detail li {
+        font-size: 15px;
+      }
+
+      /* MOBILON A FOTÓ HÁTTÉRKÉPKÉNT, ERŐSEBB SÖTÉTÍTÉSSEL */
+      .service-section::before {
+        background-image:
+          linear-gradient(90deg, rgba(5, 7, 8, 0.74), rgba(5, 7, 8, 0.88)),
+          linear-gradient(0deg, rgba(5, 7, 8, 0.78), rgba(5, 7, 8, 0.65)),
+          url("kepek/szerelo.png");
+        background-size: cover, cover, auto 100%;
+        background-position: center, center, left center;
+      }
+
+      .service-section .card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .social-follow p {
+        font-size: 16px;
+      }
+
+      .social-links {
+        gap: 9px;
+      }
+
+      .social-link {
+        padding: 8px 13px;
+      }
+
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .contact-card {
+        min-height: 280px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    /* MOZGÁSCSÖKKENTÉS BEÁLLÍTÁSA */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- FEJLÉC ÉS NAVIGÁCIÓ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#fooldal" aria-label="HafiRedőny – főoldal">
+        <img src="kepek/logo.png" alt="HafiRedőny Árnyékolástechnika">
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Menü megnyitása"
+        aria-expanded="false"
+        aria-controls="main-nav">
+        ☰
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Fő navigáció">
+        <a class="nav-link" href="#termekek">Termékek</a>
+        <a class="nav-link" href="#szolgaltatasok">Szolgáltatások</a>
+        <a class="nav-link" href="#rolunk">Rólunk</a>
+        <a class="nav-link" href="#kapcsolat">Kapcsolat</a>
+      </nav>
+
+      <a class="quote-button header-quote" href="#kapcsolat">
+        ▤ &nbsp; Árajánlatkérés <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- FŐOLDALI NYITÓRÉSZ -->
+    <section class="hero" id="fooldal">
+      <div class="hero-content">
+        <p class="eyebrow">Modern árnyékolástechnika</p>
+        <img class="hero-logo" src="kepek/logo.png" alt="HafiRedőny">
+        <h1>Kényelem, biztonság, stílus.</h1>
+        <p class="hero-copy">
+          Redőnyök, szúnyoghálók és motoros megoldások minden otthonba.
+          Minőségi termékek, precíz kivitelezés, hosszú távú elégedettség.
+        </p>
+        <a class="hero-cta" href="#kapcsolat">
+          Árajánlatkérés <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- KIEMELT ELŐNYÖK -->
+    <section class="benefits" aria-label="Előnyeink">
+      <div class="container benefit-grid">
+        <div class="benefit">
+          <img class="benefit-icon-image" src="kepek/handshake.png" alt="">
+          <span>Tartós, megbízható megoldások</span>
+        </div>
+        <div class="benefit">
+          <img class="benefit-icon-image" src="kepek/hoszigeteles.png" alt="">
+          <span>Kiemelkedő hőszigetelés</span>
+        </div>
+        <div class="benefit">
+          <img class="benefit-icon-image" src="kepek/okosotthon.png" alt="">
+          <span>Motoros és okosotthon funkciók</span>
+        </div>
+        <div class="benefit">
+          <img class="benefit-icon-image" src="kepek/szunyog.png" alt="">
+          <span>Hatékony szúnyogvédelem</span>
+        </div>
+        <div class="benefit">
+          <img class="benefit-icon-image" src="kepek/garancia.png" alt="">
+          <span>2 év garancia minden termékre</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERMÉKEK: KATEGÓRIADOBOZOK ÉS KIVÁLASZTOTT TERMÉK -->
+    <section class="content-section" id="termekek">
+      <div class="container">
+        <p class="section-kicker">Termékeink</p>
+        <h2 class="section-title">Árnyékolás, ami az otthonához illik</h2>
+        <p class="section-intro">
+          Válasszon a különböző árnyékolástechnikai megoldások közül.
+          A kategóriára rámutatva lenyílik a terméklista; a termék nevére kattintva
+          alatta jelenik meg a kép és a leírás.
+        </p>
+
+        <div class="product-groups">
+          <!-- KÜLSŐ ÁRNYÉKOLÓK -->
+          <div class="product-group">
+            <button class="group-title" type="button" aria-expanded="false">
+              <span>Külső árnyékolók</span><span aria-hidden="true">⌄</span>
+            </button>
+            <div class="group-products">
+              <button type="button" data-product="muanyag-redony">Műanyag redőny</button>
+              <button type="button" data-product="aluminium-redony">Alumínium redőny</button>
+              <button type="button" data-product="zsaluzia">Zsaluzia</button>
+              <button type="button" data-product="napellenzo">Napellenző</button>
+              <button type="button" data-product="screen">Screen</button>
+            </div>
+          </div>
+
+          <!-- BELSŐ ÁRNYÉKOLÓK -->
+          <div class="product-group">
+            <button class="group-title" type="button" aria-expanded="false">
+              <span>Belső árnyékolók</span><span aria-hidden="true">⌄</span>
+            </button>
+            <div class="group-products">
+              <button type="button" data-product="reluxa">Reluxa</button>
+              <button type="button" data-product="roletta">Roletta</button>
+              <button type="button" data-product="szalagfuggony">Szalagfüggöny</button>
+              <button type="button" data-product="savrolo">Sávroló</button>
+            </div>
+          </div>
+
+          <!-- SZÚNYOGHÁLÓK -->
+          <div class="product-group">
+            <button class="group-title" type="button" aria-expanded="false">
+              <span>Szúnyoghálók</span><span aria-hidden="true">⌄</span>
+            </button>
+            <div class="group-products">
+              <button type="button" data-product="fix-szunyoghalo">Fix szúnyogháló</button>
+              <button type="button" data-product="mobil-szunyoghalo">Mobil szúnyogháló</button>
+              <button type="button" data-product="zsaneros-szunyoghalo">Zsanéros szúnyogháló</button>
+              <button type="button" data-product="plisze">Pliszé</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- A KIVÁLASZTOTT TERMÉK HÁTTERE ÉS TULAJDONSÁGAI -->
+        <article class="product-detail" id="product-detail" hidden aria-live="polite">
+          <div class="product-detail-copy">
+            <p class="section-kicker">Kiválasztott termék</p>
+            <h3 id="product-title"></h3>
+            <ul id="product-features"></ul>
+            <a class="product-quote-link" href="#kapcsolat">
+              Árajánlatot kérek <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SZOLGÁLTATÁSOK – SÖTÉTÍTETT SZERELŐFOTÓVAL -->
+    <section class="content-section dark-section service-section" id="szolgaltatasok">
+      <div class="container">
+        <p class="section-kicker">Szolgáltatások</p>
+        <h2 class="section-title">A felméréstől a felszerelésig</h2>
+        <p class="section-intro">
+          Segítünk megtalálni az otthonához és igényeihez leginkább illő
+          árnyékolástechnikai megoldást.
+        </p>
+
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Felmérés és tanácsadás</h3>
+            <p>Átbeszéljük az igényeit, és segítünk a megfelelő termék kiválasztásában.</p>
+          </article>
+          <article class="info-card">
+            <h3>Gyártás és előkészítés</h3>
+            <p>A termék az egyeztetett méret és szín alapján készül el.</p>
+          </article>
+          <article class="info-card">
+            <h3>Precíz szerelés</h3>
+            <p>A kész terméket gondosan felszereljük, és bemutatjuk a használatát.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RÓLUNK ÉS KÖZÖSSÉGI MÉDIA -->
+    <section class="content-section" id="rolunk">
+      <div class="container">
+        <p class="section-kicker">Rólunk</p>
+        <h2 class="section-title">Megbízható árnyékolás, személyes odafigyeléssel</h2>
+        <p class="section-intro">
+          A HafiRedőnynél a minőségi termékekre, a pontos munkára és az ügyfeleinkkel
+          való egyértelmű egyeztetésre törekszünk. Célunk, hogy az elkészült árnyékoló
+          hosszú távon kényelmesebbé tegye otthonát.
+        </p>
+
+        <div class="social-follow">
+          <p>Kövess minket a közösségi médiában is!</p>
+          <div class="social-links">
+            <a
+              class="social-link"
+              href="https://www.facebook.com/profile.php?id=61555644213007"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="HafiRedőny Facebook-oldala – új lapon nyílik meg">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13.4 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.5 1.6-1.5h1.7V3.1C16.4 3 15.5 3 14.4 3c-2.9 0-4.8 1.8-4.8 5v1.8H7v3.2h2.6V21h3.8z"></path>
+              </svg>
+              <span>Facebook</span>
+            </a>
+
+            <a
+              class="social-link"
+              href="https://www.instagram.com/hafiredony/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="HafiRedőny Instagram-oldala – új lapon nyílik meg">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"></path>
+              </svg>
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KAPCSOLAT: ŰRLAP BALRA, ELÉRHETŐSÉGEK JOBBRA -->
+    <section class="content-section dark-section" id="kapcsolat">
+      <div class="container">
+        <p class="section-kicker">Kapcsolat</p>
+        <h2 class="section-title">Kérjen személyre szabott árajánlatot</h2>
+        <p class="section-intro">
+          Töltse ki az űrlapot, vagy keressen minket közvetlenül telefonon vagy e-mailben.
+        </p>
+
+        <div class="contact-layout">
+          <form class="quote-form" id="quote-form">
+            <label class="form-field">
+              Név
+              <input type="text" name="name" placeholder="Az Ön neve" required>
+            </label>
+
+            <label class="form-field">
+              Cím
+              <input
+                type="text"
+                name="address"
+                placeholder="Irányítószám, település, utca, házszám"
+                required>
+            </label>
+
+            <label class="form-field">
+              Telefonszám
+              <input type="tel" name="phone" placeholder="+36 70 474 7192" required>
+            </label>
+
+            <label class="form-field">
+              Üzenet
+              <textarea
+                name="message"
+                placeholder="Milyen termékre vagy szolgáltatásra kér ajánlatot?"
+                required></textarea>
+            </label>
+
+            <button class="quote-button form-submit" type="submit">
+              Árajánlatkérés elküldése <span aria-hidden="true">→</span>
+            </button>
+          </form>
+
+          <aside class="contact-card">
+            <img class="contact-logo" src="kepek/logo.png" alt="HafiRedőny Árnyékolástechnika">
+            <div class="contact-divider"></div>
+            <div class="contact-links">
+              <a href="tel:+36704747192">☎ &nbsp; +36 70 474 7192</a>
+              <a class="email-link" href="mailto:hafiredony@gmail.com">
+                ✉ &nbsp; hafiredony@gmail.com
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LÁBLÉC -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> HafiRedőny Árnyékolástechnika</span>
+      <a href="#fooldal">Vissza az oldal tetejére ↑</a>
+    </div>
+  </footer>
+
+  <!-- TERMÉKLEÍRÁSOK ÉS HÁTTÉRKÉPEK -->
+  <script>
+    const products = {
+      "muanyag-redony": {
+        title: "Műanyag redőny",
+        image: "kepek/muanyagredony.png",
+        features: [
+          "Külső megjelenése megegyezik az alumínium redőnyével.",
+          "Zárt állapotban nem engedi át a napfényt, teljes fényzárást biztosít.",
+          "Redőnytokba integrált szúnyoghálóval is kérhető.",
+          "Esztétikailag és anyagilag is kedvező választás."
+        ]
+      },
+
+      "aluminium-redony": {
+        title: "Alumínium redőny",
+        image: "kepek/aluminiumredony.png",
+        features: [
+          "Kiváló hő- és hangszigetelés.",
+          "Hosszú élettartamú redőnylécek.",
+          "Egyszerű működtetés, akár motorizálással.",
+          "Választható tok- és léccsín.",
+          "Szúnyoghálóval bővíthető."
+        ]
+      },
+
+      "zsaluzia": {
+        title: "Zsaluzia",
+        image: "kepek/zsaluzia.png",
+        features: [
+          "Modern stílusú árnyékoló.",
+          "Nagy szélességű és magasságú nyílászárók árnyékolására is alkalmas.",
+          "Mozgatható alumínium lamellákkal készül.",
+          "A lamellák forgatásával szabályozható a fény beáramlása.",
+          "A kényelem érdekében motorizálható.",
+          "Egyes típusai magas fényzáró képességgel rendelkeznek.",
+          "A redőnyök alternatívája lehet."
+        ]
+      },
+
+      "napellenzo": {
+        title: "Napellenző",
+        image: "kepek/napellenzo.png",
+        features: [
+          "Az egyik legelterjedtebb külső textilárnyékoló.",
+          "Időtálló, praktikus, örök klasszikus teraszárnyékoló.",
+          "Tökéletes választás a napsütés és az UV-sugárzás ellen.",
+          "Családi házaknál, üzlethelyiségeknél, kirakatoknál és vendéglátóhelyeken is alkalmazható.",
+          "Széles színválasztékának köszönhetően az Ön stílusához igazítható.",
+          "Nagy teraszfelületek árnyékolására is alkalmas.",
+          "Kézi és motoros működtetéssel is kérhető.",
+          "Többféle kivitelben elérhető: csuklókaros, tokos vagy kitámasztókaros változatban.",
+          "Szerkezete részben vagy teljesen alumíniumból készülhet.",
+          "A szerkezet a RAL színskála bármely színében kérhető."
+        ]
+      },
+
+      "screen": {
+        title: "Screen",
+        image: "kepek/screen.png",
+        features: [
+          "Manapság az egyik legmodernebb külső árnyékoló.",
+          "Akkor is jó választás, ha árnyékolást szeretne, de nem akar teljes sötétséget.",
+          "Kiemelten szélálló kivitelben is elérhető.",
+          "A szerkezet beépítése kevés helyet igényel.",
+          "Árnyékolás és hővédelem mellett a kilátás is megmarad.",
+          "Motorizálható.",
+          "Szűri a bejövő fényt, és segít meggátolni a helyiség felmelegedését.",
+          "Energiamegtakarítás céljából utólag is felszerelhető, a kívánt méretben.",
+          "Különböző textiltípusok közül választhat."
+        ]
+      },
+
+      "reluxa": {
+        title: "Reluxa",
+        image: "kepek/reluxa.png",
+        features: [
+          "Az egyik legrégebbi és legnépszerűbb belső árnyékoló.",
+          "A lamellák forgatásával szabályozható a bejutó fény.",
+          "Szükség esetén teljesen felhúzható.",
+          "Sokféle helyre könnyen felszerelhető.",
+          "Széles színválaszték áll rendelkezésre.",
+          "Gyöngylánccal forgatható vagy húzható fel."
+        ]
+      },
+
+      "roletta": {
+        title: "Roletta",
+        image: "kepek/roletta.png",
+        features: [
+          "Örök klasszikus beltéri árnyékoló.",
+          "Széles stílus- és színválaszték.",
+          "Nagy felületek és ferde tetőtéri ablakok árnyékolására is alkalmas.",
+          "Tokos és tok nélküli kivitelben is elérhető.",
+          "Fényáteresztő, fényzáró, hővisszaverő és hangelnyelő textilekkel kérhető.",
+          "Többféle működtetéssel elérhető: manuális, rugós, gyöngyláncos vagy motoros.",
+          "A textil sok színben választható, akár a belső térhez igazítva."
+        ]
+      },
+
+      "szalagfuggony": {
+        title: "Szalagfüggöny",
+        image: "kepek/szalagfuggony.png",
+        features: [
+          "A klasszikus és modern árnyékolók ötvözete.",
+          "Kézi vagy motoros mozgatással kérhető.",
+          "Hő, fény és UV-sugárzás ellen is véd; akár tűzálló kivitelben.",
+          "Nyomtatható, ezért reklámszövegek elhelyezésére is alkalmas.",
+          "Nagy szín- és textilválasztékban elérhető."
+        ]
+      },
+
+      "savrolo": {
+        title: "Sávroló",
+        image: "kepek/savrolo.png",
+        features: [
+          "Elegáns megjelenésű belső árnyékoló.",
+          "Jellegzetes fényhatást biztosít.",
+          "A textilben fényáteresztő és sötétítő csíkok váltakoznak.",
+          "Kézi vagy motoros működtetéssel kérhető.",
+          "Nyílászáróra és falsíkra is szerelhető.",
+          "Nagy színválasztékban elérhető.",
+          "Műanyag ablakra akár fúrás nélkül is felszerelhető."
+        ]
+      },
+
+      "fix-szunyoghalo": {
+        title: "Fix szúnyogháló",
+        image: "kepek/fixszunyoghalo.png",
+        features: [
+          "A legköltséghatékonyabb szúnyogháló-megoldás.",
+          "Biztos védelmet nyújt a rovarok és bogarak ellen.",
+          "Az üvegszálas hálót gumikeret rögzíti az alumínium keretbe.",
+          "A keret sarkai gérbe vannak vágva, ezért nincs szükség műanyag sarokelemre.",
+          "A háló alapesetben antracitszürke üvegszálas; a keret színe a RAL színskála szerint választható."
+        ]
+      },
+
+      "mobil-szunyoghalo": {
+        title: "Mobil szúnyogháló",
+        image: "kepek/mobilszunyoghalo.png",
+        features: [
+          "Önálló alumínium tokszerkezettel rendelkezik.",
+          "Üvegszálas hálóval készül.",
+          "A háló antracitszürke vagy fekete színben választható."
+        ]
+      },
+
+      "zsaneros-szunyoghalo": {
+        title: "Zsanéros szúnyogháló",
+        image: "kepek/zsanerosszunyoghalo.png",
+        features: [
+          "Hagyományos, keretes szúnyoghálós ajtó.",
+          "Alumíniumprofilból készül.",
+          "Üvegszálas szúnyoghálóval készül.",
+          "Mágneszáras vagy bepattintós záródással kérhető.",
+          "Egyszárnyú vagy kétszárnyú kivitelben is készülhet.",
+          "Extra lehetőség: körben záródó mágneskeret vagy rugós zsanérszerkezet.",
+          "Az alsó rész lemezborítással vagy kutya-/macskahálóval is kérhető.",
+          "Igény esetén kisállat-kijáró is beépíthető."
+        ]
+      },
+
+      "plisze": {
+        title: "Pliszé szúnyogháló",
+        image: "",
+        features: []
+      }
+    };
+
+    /* KIVÁLASZTOTT TERMÉK MEGJELENÍTÉSE */
+    const productDetail = document.querySelector("#product-detail");
+    const productTitle = document.querySelector("#product-title");
+    const productFeatures = document.querySelector("#product-features");
+    const productGroups = document.querySelectorAll(".product-group");
+
+    function showProduct(productId) {
+      const product = products[productId];
+
+      if (!product) {
+        return;
+      }
+
+      productTitle.textContent = product.title;
+      productFeatures.replaceChildren();
+
+      product.features.forEach((feature) => {
+        const item = document.createElement("li");
+        item.textContent = feature;
+        productFeatures.appendChild(item);
+      });
+
+      if (product.image) {
+        productDetail.style.setProperty(
+          "--product-image",
+          `url("${product.image}")`
+        );
+      } else {
+        productDetail.style.removeProperty("--product-image");
+      }
+
+      productDetail.hidden = false;
+      productDetail.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    /* KATEGÓRIADOBOZOK BEZÁRÁSA */
+    function closeProductGroups() {
+      productGroups.forEach((group) => {
+        group.classList.remove("is-open", "is-closed");
+        group.querySelector(".group-title").setAttribute("aria-expanded", "false");
+      });
+    }
+
+    /* TERMÉKRE KATTINTÁS: A LISTA BECSUKÁSA */
+    document.querySelectorAll("[data-product]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedGroup = button.closest(".product-group");
+
+        showProduct(button.dataset.product);
+        closeProductGroups();
+
+        selectedGroup.classList.add("is-closed");
+        button.blur();
+      });
+    });
+
+    /* KATEGÓRIADOBOZOK KATTINTÁSOS NYITÁSA */
+    document.querySelectorAll(".group-title").forEach((button) => {
+      button.addEventListener("click", () => {
+        const group = button.closest(".product-group");
+        const willOpen = !group.classList.contains("is-open");
+
+        closeProductGroups();
+
+        if (willOpen) {
+          group.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    /* KURZOR ELHAGYJA A DOBOZT: UTÁNA ÚJRA LENYITHATÓ */
+    productGroups.forEach((group) => {
+      group.addEventListener("mouseleave", () => {
+        group.classList.remove("is-closed");
+      });
+    });
+
+    /* KATTINTÁS A DOBOZON KÍVÜL VAGY ESC BILLENTYŰRE: BEZÁRÁS */
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".product-group")) {
+        closeProductGroups();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeProductGroups();
+      }
+    });
+
+    /* MOBIL MENÜ */
+    const menuButton = document.querySelector(".menu-toggle");
+    const mainNav = document.querySelector("#main-nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("is-open");
+
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Menü bezárása" : "Menü megnyitása"
+      );
+      menuButton.textContent = isOpen ? "×" : "☰";
+
+      if (!isOpen) {
+        closeProductGroups();
+      }
+    });
+
+    mainNav.querySelectorAll(".nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Menü megnyitása");
+        menuButton.textContent = "☰";
+      });
+    });
+
+    /* ÉVSZÁM A LÁBLÉCBEN */
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    /* AJÁNLATKÉRŐ ŰRLAP: E-MAIL ELŐKÉSZÍTÉSE */
+    document.querySelector("#quote-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const data = new FormData(event.currentTarget);
+      const subject = encodeURIComponent("Árajánlatkérés – HafiRedőny");
+      const body = encodeURIComponent(
+        "Név: " + data.get("name") + "\n" +
+        "Cím: " + data.get("address") + "\n" +
+        "Telefonszám: " + data.get("phone") + "\n\n" +
+        "Üzenet:\n" + data.get("message")
+      );
+
+      window.location.href =
+        "mailto:hafiredony@gmail.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
